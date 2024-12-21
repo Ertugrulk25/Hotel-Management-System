@@ -1,5 +1,4 @@
 package com.tpe.hotelManagementSystem.repository;
 
-public class RoomRepository {
-
+public class ReservationRepository {
 }

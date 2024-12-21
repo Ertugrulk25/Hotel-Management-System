@@ -1,12 +1,11 @@
-package com.tpe.hotelManagementSystem.model;
+package com.tpe.hotelManagementSystem.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "tbl_rooms")
+@Table(name = "t_room")
 public class Room {
 
     @Id
@@ -18,8 +17,13 @@ public class Room {
     @Column(nullable = false)
     private Integer capacity;
 
-    private Hotel hotel;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Hotel hotel; // bu oda hangi otelin
 
+
+    @OneToMany (mappedBy = "room", orphanRemoval = true)// todo: ilişki sonra düzenlenecek
+    private List<Reservation> reservations = new ArrayList<>();
 
     public Room(Long id, String number, Integer capacity, Hotel hotel) {
         this.id = id;
@@ -68,8 +72,7 @@ public class Room {
         return "Room{" +
                 "id=" + id +
                 ", number='" + number + '\'' +
-                ", capacity=" + capacity +
-                ", hotel=" + hotel +
+                ", capacity=" + capacity  +
                 '}';
     }
 }

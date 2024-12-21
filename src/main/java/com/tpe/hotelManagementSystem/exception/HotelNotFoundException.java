@@ -1,6 +1,10 @@
 package com.tpe.hotelManagementSystem.exception;
 
-public class HotelNotFoundException extends Throwable {
-    public HotelNotFoundException(String s) {
+public class HotelNotFoundException extends RuntimeException {
+    public HotelNotFoundException(String massage) {
+
+   super(massage);
+
+
     }
 }
