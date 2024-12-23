@@ -18,8 +18,9 @@ public class HotelManagementSystem {
     public static void displayHotelManagementSystemMenu() {
         HotelRepository hotelRepository = new HotelRepository();
         HotelService hotelService = new HotelService(hotelRepository);
+
         RoomRepository roomRepository = new RoomRepository();
-        RoomService roomService = new RoomService(roomRepository);
+        RoomService roomService = new RoomService(roomRepository,hotelService);
 int choice;
 do {
     System.out.println("=================== Hotel Management System ===========================");
@@ -133,16 +134,16 @@ switch (choice){
                 case 1:
             // 4-a işlemini yapabilmek için bir odaya ihtiyaç var
                     //4-a.1 oda oluşturma
-
+            roomService.saveRoom();
                     break;
                 case 2:
-
+                //5 a ödev
                     break;
                 case 3:
 
                     break;
                 case 4:
-
+                    //6 a ödev
                     break;
                 case 0:
                     exit = true;
