@@ -22,7 +22,7 @@ import java.util.List;
     private String location;
 
     //orphanremoval:neden kullanmakdık cascade yerine. çünkü 11 i room tablosundan da siler
-@OneToMany(mappedBy = "hotel" ,cascade = CascadeType.REMOVE)
+@OneToMany(mappedBy = "hotel" ,cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
 private List<Room> rooms= new ArrayList<>();
 
     public Hotel(Long id, String name, String location) {
@@ -72,7 +72,7 @@ private List<Room> rooms= new ArrayList<>();
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
-                ", rooms=" + rooms +
+               ", rooms=" + rooms +
                 '}';
     }
 }

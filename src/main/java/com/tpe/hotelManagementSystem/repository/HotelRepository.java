@@ -55,4 +55,51 @@ public class HotelRepository {
         }
         return null;
     }
+
+    public void delete(Hotel deletedHotel) {
+try {
+
+
+ session = HibernateUtils.getSessionFactory().openSession();
+ Transaction trs = session.beginTransaction();
+
+ session.delete(deletedHotel);
+
+ trs.commit();
+
+}catch (Exception e){
+    System.out.println(e.getMessage());
+}finally {
+    HibernateUtils.closeSession(session);
 }
+    }
+// 7-c
+    public void update(Hotel foundHotel) {
+    try {
+
+
+        session = HibernateUtils.getSessionFactory().openSession();
+        Transaction trs = session.beginTransaction();
+
+        session.update(foundHotel);
+
+        trs.commit();
+    }catch (Exception e){
+        System.out.println(e.getMessage());
+    }finally {
+        HibernateUtils.closeSession(session);
+    }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

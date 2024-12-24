@@ -1,9 +1,13 @@
 package com.tpe.hotelManagementSystem.controller;
 
 import com.tpe.hotelManagementSystem.config.HibernateUtils;
+import com.tpe.hotelManagementSystem.repository.GuestRepository;
 import com.tpe.hotelManagementSystem.repository.HotelRepository;
+import com.tpe.hotelManagementSystem.repository.ReservationRepository;
 import com.tpe.hotelManagementSystem.repository.RoomRepository;
+import com.tpe.hotelManagementSystem.service.GuestService;
 import com.tpe.hotelManagementSystem.service.HotelService;
+import com.tpe.hotelManagementSystem.service.ReservationService;
 import com.tpe.hotelManagementSystem.service.RoomService;
 
 import java.util.Scanner;
@@ -21,7 +25,16 @@ public class HotelManagementSystem {
 
         RoomRepository roomRepository = new RoomRepository();
         RoomService roomService = new RoomService(roomRepository,hotelService);
-int choice;
+
+
+        GuestRepository guestRepository = new GuestRepository();
+        GuestService guestService = new GuestService(guestRepository);
+
+        ReservationRepository reservationRepository = new ReservationRepository();
+        ReservationService reservationService = new ReservationService(reservationRepository,guestService,roomService);
+
+
+        int choice;
 do {
     System.out.println("=================== Hotel Management System ===========================");
     System.out.println("1. Hotel Operations ");
@@ -44,11 +57,11 @@ switch (choice){
         break;
     case 3 :
         // guest operations
-        displayGuestOperationsMenu();
+        displayGuestOperationsMenu(guestService);
         break;
     case 4 :
         //reservatıon operations
-        displayReservationOperationsMenu();
+        displayReservationOperationsMenu(reservationService);
         break;
     case 0 :
         System.out.println("Good Bye... ");
@@ -89,15 +102,24 @@ switch (choice){
                     hotelService.findHotelById(id);
                     break;
                 case 3:
+                    //8 a
+                    System.out.println("Enter Hotel ID : ");
+                    Long deletedHotelId=scanner.nextLong();
+                    scanner.nextLine();
 
+                    hotelService.deleteHotelById(deletedHotelId);
                     break;
                 case 4:
         // tüm hotelleri listeleme
                     hotelService.getAllHotels();
                     break;
                 case 5:
-                // todo:  4-a: otellerin güncelleme işlemi
+                //  7-a: otellerin güncelleme işlemi
+                    System.out.println("Enter Hotel ID : ");
+                    Long updateHotelId=scanner.nextLong();
+                    scanner.nextLine();
 
+                    hotelService.updateHotelById(updateHotelId);
                     break;
                 case 0:
                     exit = true;
@@ -112,7 +134,7 @@ switch (choice){
     }
 
     //room operations
-    private static void displayRoomOperationsMenu(RoomService roomService) {
+    private static void displayRoomOperationsMenu(RoomService roomService) {//1 ödev var
 
 
 
@@ -138,12 +160,19 @@ switch (choice){
                     break;
                 case 2:
                 //5 a ödev
+                    System.out.println("Enter room ID: ");
+                    Long roomId = scanner.nextLong();
+                    scanner.nextLine();
+
+                    roomService.findRoomById(roomId);
                     break;
                 case 3:
-
+                    // todo: ODEV ID si verilen odayı silme
                     break;
                 case 4:
                     //6 a ödev
+                   // todo: method ekleme
+                    roomService.getAllRooms();
                     break;
                 case 0:
                     exit = true;
@@ -156,10 +185,10 @@ switch (choice){
             }
         }
 
-    }
+    }//1 ödev var
 
     //guest operations
-    private static void displayGuestOperationsMenu() {
+    private static void displayGuestOperationsMenu(GuestService guestService) {
         System.out.println("Guest Operation Menu");
 
         boolean exit = false;
@@ -177,16 +206,22 @@ switch (choice){
 
             switch (choice) {
                 case 1:
-
+                // 9 a  yeni müşteri
+                    guestService.saveGuest();
                     break;
                 case 2:
+                        // ödev: guesti bulma id ile
+                    System.out.println("Enter  guest ID: ");
+                    Long guestId = scanner.nextLong();
+                    scanner.nextLine();
 
+                    guestService.findGuesById(guestId);
                     break;
                 case 3:
-
+                        // todo: ödev guesti id ile silme
                     break;
                 case 4:
-
+                        // todo:ödev tüm guestleri listeleme
                     break;
                 case 0:
                     exit = true;
@@ -197,10 +232,10 @@ switch (choice){
                     break;
             }
         }
-    }
+    }//ödev varr
 
     //reservation operations
-    private static void displayReservationOperationsMenu() {
+    private static void displayReservationOperationsMenu(ReservationService reservationService) {
         System.out.println("Reservation Operation Menu");
 
         boolean exit = false;
@@ -218,16 +253,17 @@ switch (choice){
 
             switch (choice) {
                 case 1:
-
+                //10-a
+                    reservationService.createReservation();
                     break;
                 case 2:
-
+                    //todo ödev5 id ile reservation bulma
                     break;
                 case 3:
-
+                    //todo ödev6 tüm reservationları listeleme
                     break;
                 case 4:
-
+                    //todo ödev7 rezervationları silme
                     break;
                 case 0:
                     exit = true;
