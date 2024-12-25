@@ -1,6 +1,7 @@
 package com.tpe.hotelManagementSystem.repository;
 
 import com.tpe.hotelManagementSystem.config.HibernateUtils;
+import com.tpe.hotelManagementSystem.domain.Hotel;
 import com.tpe.hotelManagementSystem.domain.Room;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -50,4 +51,23 @@ public class RoomRepository {
             HibernateUtils.closeSession(session);
         }
     }
-}
+
+    public void delete(Room deletedRoom) {
+        try {
+
+
+            session = HibernateUtils.getSessionFactory().openSession();
+            Transaction trs = session.beginTransaction();
+
+            session.delete(deletedRoom);
+
+            trs.commit();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }finally {
+            HibernateUtils.closeSession(session);
+        }
+    }
+
+    }

@@ -70,6 +70,7 @@ switch (choice){
         break;
     default:
         System.out.println("Invalid Choice, Please Try Again... ");
+        break;
 }
 }while (choice!=0);
 
@@ -167,11 +168,16 @@ switch (choice){
                     roomService.findRoomById(roomId);
                     break;
                 case 3:
-                    // todo: ODEV ID si verilen odayı silme
+                    // ODEV ID si verilen odayı silme
+                    System.out.println("Enter Room ID : ");
+                    Long deleteRoomlId=scanner.nextLong();
+                    scanner.nextLine();
+
+                    roomService.deleteRoomlById(deleteRoomlId);
                     break;
                 case 4:
                     //6 a ödev
-                   // todo: method ekleme
+                   //  method ekleme
                     roomService.getAllRooms();
                     break;
                 case 0:
@@ -218,10 +224,16 @@ switch (choice){
                     guestService.findGuesById(guestId);
                     break;
                 case 3:
-                        // todo: ödev guesti id ile silme
+                        //  ödev guesti id ile silme
+                    System.out.println("Enter Guest ID : ");
+                    Long deleteGuestlId=scanner.nextLong();
+                    scanner.nextLine();
+
+                    guestService.deleteGuestById(deleteGuestlId);
                     break;
                 case 4:
-                        // todo:ödev tüm guestleri listeleme
+                        // :ödev tüm guestleri listeleme
+                    guestService.getAllGuest();
                     break;
                 case 0:
                     exit = true;
@@ -257,13 +269,25 @@ switch (choice){
                     reservationService.createReservation();
                     break;
                 case 2:
-                    //todo ödev5 id ile reservation bulma
+                    // ödev5 id ile reservation bulma
+                    System.out.println("Enter  reservation ID: ");
+                    Long reservationId = scanner.nextLong();
+                    scanner.nextLine();
+
+                    reservationService.findReservationById(reservationId);
                     break;
                 case 3:
-                    //todo ödev6 tüm reservationları listeleme
+                    // ödev6 tüm reservationları listeleme
+
+                    reservationService.getAllReservation();
                     break;
                 case 4:
-                    //todo ödev7 rezervationları silme
+                    //ödev7 rezervationları silme
+                    System.out.println("Enter Reservation ID : ");
+                    Long deleteReservationlId=scanner.nextLong();
+                    scanner.nextLine();
+
+                    reservationService.deleteReservationById(deleteReservationlId);
                     break;
                 case 0:
                     exit = true;

@@ -20,7 +20,7 @@ public class Guest {
     @Embedded
     private Address address;
 
-    @OneToMany(mappedBy = "guest", orphanRemoval = true)
+    @OneToMany(mappedBy = "guest",orphanRemoval = true)
     private List<Reservation> reservations = new ArrayList<>();
 
     public Long getId() {

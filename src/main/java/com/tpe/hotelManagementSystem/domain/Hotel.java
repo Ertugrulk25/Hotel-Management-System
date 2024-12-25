@@ -6,13 +6,12 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-    @Table(name = "tbl_hotel")
+    @Entity
+    @Table(name = "t_hotel")
     public class Hotel {
 
 
     @Id
-
     private Long id;
 
     @Column(nullable = false)

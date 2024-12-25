@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!DOCTYPE hibernate-configuration PUBLIC
+
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
 <hibernate-configuration>
+
     <session-factory>
 
-        <!-- Database connection settings -->
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/HotelManagementSystem</property>
-        <property name="hibernate.connection.username">techpro</property>
-        <property name="hibernate.connection.password">password</property>
+        <property name = "hibernate.connection.driver_class">org.postgresql.Driver</property>
 
-        <!-- Other Hibernate configuration properties -->
-        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
-        <property name="hibernate.show_sql">true</property>
-        <property name="hibernate.format_sql">true</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hotelMS_db</property>
 
-        <!-- Mapping entity classes -->
-        <!-- <mapping class="com.tpe.HotelManagementSystem.model.Hotel" />
-         <mapping class="com.tpe.HotelManagementSystem.model.Room" />
-          <mapping class="com.tpe.HotelManagementSystem.model.Reservation" />
-          <mapping class="com.tpe.HotelManagementSystem.model.Guest" />
-          <mapping class="com.tpe.HotelManagementSystem.model.Address"/>        -->
+        <property name="connection.username">techpro</property>
+
+        <property name="connection.password">password</property>
+
+
+        <property name = "hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</property>
+
+
+
+        <property name="hbm2ddl.auto">update</property>
+
+        <property name="show_sql">true</property>
+
+        <property name="format_sql">true</property>
+
+
+
+
+        <!--addAnnotatedClass metoduna gerek kalmaz-->
+
 
     </session-factory>
+
 </hibernate-configuration>

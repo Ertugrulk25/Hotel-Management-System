@@ -21,30 +21,28 @@ public class HotelService {
     public void saveHotel() {
         Hotel hotel = new Hotel();
 
-        System.out.println("Enter hotel ID ");
-        Long id = scanner.nextLong(); //todo: hali hazırda zaten bu id ye sahip otel varsa kontrol edilecek
+        System.out.println("Enter Hotel ID : ");
+        Long id=scanner.nextLong();//todo: hali hazırda zaten bu idye sahip varsa kontrolu yapılcak
         scanner.nextLine();
-
-        Hotel foundHOtel = findHotelById(id);
-        if (foundHOtel!=null){
-            System.out.println("Hotel save is failed!!!!");
-        }else {
+        // Hotel foundHotel=findHotelById(id);
+        // if (foundHotel!=null){
+        //     System.out.println("Hotel save is Failed!!!!");
+        // }else {
         hotel.setId(id);
-        }
-
-        System.out.println("Enter hotel name ");
+        System.out.println("Enter Hotel Name : ");
         hotel.setName(scanner.nextLine());
 
-        System.out.println("Enter hotel location ");
+        System.out.println("Enter Hotel Location ");
         hotel.setLocation(scanner.nextLine());
 
         hotelRepository.save(hotel);
 
-        System.out.println("Hotel is saved successfully. Hotel ID: " + hotel.getId());
+        System.out.println("Hotel is saved successfully. Hotel ID: "+hotel.getId());
+//    }
     }
 
-    //2- b id si veriln otelin yazdırma işlemi
-    public Hotel findHotelById(Long id) throws HotelNotFoundException {
+    //2-b : idsi verilen hotelin yazdırılma işlemi.
+    public Hotel findHotelById(Long id) {
         Hotel foundHotel = hotelRepository.findById(id); // hotelRepository.findHotelId(id)
         try {
             if (foundHotel != null) {

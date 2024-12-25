@@ -32,7 +32,8 @@ private final HotelService hotelService;
             room.setNumber(scanner.next());
             System.out.println("Enter room capacity");
             room.setCapacity(scanner.nextInt());
-            System.out.println("Enter Hote: ");
+            scanner.nextLine();
+            System.out.println("Enter Hotel ID: ");
             Long hotelId = scanner.nextLong();
             scanner.nextLine();
 
@@ -81,4 +82,28 @@ private final HotelService hotelService;
             System.out.println("No rooms found!");
         }
     }
-}
+
+    public void deleteRoomlById(Long deleteRoomlId) {
+
+        Room deletedRoom = findRoomById(deleteRoomlId);
+        if (deletedRoom != null) {
+            System.out.println(deletedRoom);
+            System.out.println("Are you sure to delete: ");
+            System.out.println("Please answer with Y or N : ");
+            String select = scanner.next();
+
+            if (select.equalsIgnoreCase("Y")) {
+                roomRepository.delete(deletedRoom);
+                System.out.println("Delete operation is Succesfully ");
+            } else {
+                System.out.println("Delete operation is canceled!!!");
+            }
+
+
+        } else {
+            System.out.println("Delete operation is Canceled!!! ");
+        }
+
+    }
+    }
+
